@@ -1,31 +1,23 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: vaultwardeb
+  name: vaultwarden
   namespace: argocd
 spec:
   project: default
-  source:
-    repoURL: https://github.com/FurryJulie/infra-argocd.git
-    targetRevision: dev
-    path: vaultwarden
-    helm:
-      releaseName: vaultwarden
+
+  sources:
+    - repoURL: https://charts.pascaliske.dev
+      chart: vaultwarden
+      targetRevision: 0.31.0
+      helm:
+        valueFiles:
+          - $values/values/vaultwarden-values.yaml
+
+    - repoURL: https://github.com/FurryJulie/infra-argocd.git
+      targetRevision: dev
+      ref: values
+
   destination:
-    server: "https://kubernetes.default.svc"
+    server: https://kubernetes.default.svc
     namespace: vaultwarden
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-    - CreateNamespace=true
-    - RespectIgnoreDifferences=true
-  ignoreDifferences:
-  - group: apps
-    kind: Deployment
-    jsonPointers:
-    - /spec/replicas
-  - kind: Secret
-    jqPathExpressions:
-    - .data
