@@ -9,7 +9,7 @@ spec:
   sources:
     - repoURL: https://charts.pascaliske.dev
       chart: vaultwarden
-      targetRevision: 0.31.0
+      targetRevision: 2.0.0
       helm:
         valueFiles:
           - $values/values/vaultwarden-values.yaml
