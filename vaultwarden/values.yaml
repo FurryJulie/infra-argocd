@@ -3,14 +3,14 @@ image:
   registry: ghcr.io
   # -- The repository to pull the image from.
   #repository: dani-garcia/vaultwarden
-  repository: Timshel/OIDCWarden
+  repository: timshel/oidcwarden
   # -- The docker tag, if left empty chart's appVersion will be used.
   # @default -- `.Chart.AppVersion`
-  tag: ''
+  tag: 'v2026.3.1-3'
   # -- The pull policy for the controller.
   pullPolicy: IfNotPresent
 
-nameOverride: 'vaultwarden'
+nameOverride: ''
 fullnameOverride: ''
 
 controller:

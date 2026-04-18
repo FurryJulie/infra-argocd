@@ -8,9 +8,9 @@ spec:
   # We take the helm chart from pascaliske and add our value values file
   # See: https://argo-cd.readthedocs.io/en/stable/user-guide/multiple_sources/
   sources:
-    - repoURL: https://charts.pascaliske.dev
-      chart: vaultwarden
-      targetRevision: 2.0.0
+    - repoURL: https://github.com/FurryJulie/helm-charts
+      path: charts/vaultwarden
+      targetRevision: main
       helm:
         valueFiles:
           - $values/vaultwarden/values.yaml
