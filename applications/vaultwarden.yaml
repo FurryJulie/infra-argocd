@@ -5,7 +5,6 @@ metadata:
   namespace: argocd
 spec:
   project: default
-
   sources:
     - repoURL: https://charts.pascaliske.dev
       chart: vaultwarden
@@ -13,11 +12,23 @@ spec:
       helm:
         valueFiles:
           - $values/values/vaultwarden-values.yaml
-
     - repoURL: https://github.com/FurryJulie/infra-argocd.git
       targetRevision: dev
+      path: vaultwarden
       ref: values
-
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - RespectIgnoreDifferences=true
   destination:
     server: https://kubernetes.default.svc
     namespace: vaultwarden
+#  source:
+#    - repoURL: https://github.com/FurryJulie/infra-argocd.git
+#      targetRevision: dev
+#      path: vaultwarden
+#      helm:
+#        releaseName: vaultwarden
