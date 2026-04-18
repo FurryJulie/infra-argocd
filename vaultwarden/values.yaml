@@ -44,11 +44,12 @@ service:
 
 ingressRoute:
   # -- Create an IngressRoute object for exposing this chart.
-  create: false
+  create: true
   # -- List of [entry points](https://doc.traefik.io/traefik/routing/routers/#entrypoints) on which the ingress route will be available.
-  entryPoints: []
+  entryPoints: ["websecure"]
   # -- [Matching rule](https://doc.traefik.io/traefik/routing/routers/#rule) for the underlying router.
-  rule: ''
+  #rule: 'Host(`vaultwarden.next.fluufff.org`)'
+  rule: 'Host(`vaultwarden.fluuffftest.fpsource.info`)'
   # -- List of [middleware objects](https://doc.traefik.io/traefik/routing/providers/kubernetes-crd/#kind-middleware) for the ingress route.
   middlewares: []
   # -- Use an existing secret containing the TLS certificate.
