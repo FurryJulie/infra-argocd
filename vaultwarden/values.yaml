@@ -81,7 +81,25 @@ env:
   # -- Timezone for the container.
   - name: TZ
     value: UTC
-
+  # See: https://github.com/Timshel/OIDCWarden/blob/main/SSO.md
+  - name: SSO_AUTHORITY
+    value: "https://accounts.google.com"
+  - name: SSO_AUTHORIZE_EXTRA_PARAMS
+    value: '"access_type=offline&prompt=consent"'
+  - name: SSO_CLIENT_ID
+    value: "test"
+  - name: SSO_CLIENT_SECRET
+    value: "test"
+  - name: SSO_ONLY
+    value: true
+  - name: SSO_SIGNUPS_MATCH_EMAIL
+    value: true
+  - name: SSO_SYNC_ON_REFRESH
+    value: true
+  - name: SSO_ORGANIZATIONS_ENABLED
+    value: true
+  - name: SSO_ORGANIZATIONS_ALL_COLLECTIONS
+    value: false
 ports:
   http:
     # -- Enable the port inside the `controller` and `Service` objects.
